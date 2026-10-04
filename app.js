@@ -33,7 +33,7 @@ async function searchRecord(event) {
 
   const { data, error } = await supabaseClient
     .from("records")
-    .select("id,record_number,name,status,record_date,description,file_name")
+    .select("id,record_number,name,court_name,city_province,judge_name,status,record_date,description,file_name")
     .eq("record_number", number)
     .maybeSingle();
 
@@ -133,12 +133,18 @@ async function loadExisting(number) {
 
   if (data) {
     $("editName").value = data.name || "";
+    $("editCourtName").value = data.court_name || "";
+    $("editCityProvince").value = data.city_province || "";
+    $("editJudgeName").value = data.judge_name || "";
     $("editStatus").value = data.status || "";
     $("editDate").value = data.record_date || "";
     $("editDescription").value = data.description || "";
     $("existingFile").textContent = data.file_name ? `Current file: ${data.file_name}` : "No current file.";
   } else {
     $("editName").value = "";
+    $("editCourtName").value = "";
+    $("editCityProvince").value = "";
+    $("editJudgeName").value = "";
     $("editStatus").value = "";
     $("editDate").value = "";
     $("editDescription").value = "";
@@ -182,6 +188,9 @@ async function saveRecord(event) {
     p_password: staffCredentials.password,
     p_record_number: recordNumber,
     p_name: $("editName").value.trim(),
+    p_court_name: $("editCourtName").value.trim(),
+    p_city_province: $("editCityProvince").value.trim(),
+    p_judge_name: $("editJudgeName").value.trim(),
     p_status: $("editStatus").value.trim(),
     p_record_date: $("editDate").value || null,
     p_description: $("editDescription").value.trim(),
