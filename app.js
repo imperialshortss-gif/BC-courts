@@ -71,7 +71,18 @@ async function openRecordFile(recordNumber) {
   const bytes = new Uint8Array(hex.match(/.{1,2}/g)?.map((x) => parseInt(x, 16)) || []);
   const blob = new Blob([bytes], { type: data[0].file_mime_type || "application/octet-stream" });
   const url = URL.createObjectURL(blob);
-  window.open(url, "_blank", "noopener");
+
+  // Opening a new tab after an async database request can be blocked by browsers.
+  // Use a temporary link so the click remains associated with the user's action.
+  const link = document.createElement("a");
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.download = "";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
   setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 
