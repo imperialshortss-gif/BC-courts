@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BC Courts public record lookup" />
+  <title>BC Courts Record Lookup</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <div class="eyebrow">BC COURTS</div>
+        <h1>Record Lookup</h1>
+      </div>
+      <button id="adminLink" class="link-button">Staff Login</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="searchView" class="card hero-card">
+      <h2>Search a Record</h2>
+      <p class="muted">Enter the record number to view the available record information and attached details file.</p>
+      <form id="searchForm" class="search-form">
+        <input id="recordNumber" name="recordNumber" autocomplete="off" placeholder="Record number" required />
+        <button type="submit">Search</button>
+      </form>
+      <div id="searchMessage" class="message" hidden></div>
+      <div id="recordResult" hidden></div>
+    </section>
+
+    <section id="adminView" class="card" hidden>
+      <div class="admin-heading">
+        <div>
+          <div class="eyebrow">STAFF AREA</div>
+          <h2>Manage Record</h2>
+        </div>
+        <button id="logoutButton" class="secondary">Log out</button>
+      </div>
+
+      <div id="loginPanel">
+        <p class="muted">Sign in to add or update records.</p>
+        <form id="loginForm" class="stack">
+          <label>Email<input id="email" type="email" required /></label>
+          <label>Password<input id="password" type="password" required /></label>
+          <button type="submit">Sign in</button>
+        </form>
+        <div id="loginMessage" class="message" hidden></div>
+      </div>
+
+      <div id="editorPanel" hidden>
+        <form id="recordForm" class="stack">
+          <label>Record number<input id="editRecordNumber" required placeholder="e.g. E5528829" /></label>
+          <label>Name / title<input id="editName" placeholder="Name or record title" /></label>
+          <label>Status<input id="editStatus" placeholder="Active, Closed, etc." /></label>
+          <label>Date<input id="editDate" type="date" /></label>
+          <label>Details<textarea id="editDescription" rows="6" placeholder="Details to display on the public record page"></textarea></label>
+          <label>Details file<input id="detailsFile" type="file" accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png" /></label>
+          <div id="existingFile" class="muted"></div>
+          <button type="submit">Save Record</button>
+        </form>
+        <div id="saveMessage" class="message" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container">BC Courts Record Lookup</div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
