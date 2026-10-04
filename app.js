@@ -1,8 +1,9 @@
-// Supabase setup: replace these two values after creating the Supabase project.
-const SUPABASE_URL = window.SUPABASE_URL || "YOUR_SUPABASE_URL";
-const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || "YOUR_SUPABASE_ANON_KEY";
-const supabaseConfigured = !SUPABASE_URL.startsWith("YOUR_") && !SUPABASE_ANON_KEY.startsWith("YOUR_");
-const supabaseClient = supabaseConfigured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+// Supabase setup. The publishable/anon key is safe for browser use; RLS protects the database.
+// Do not put the database password or service-role/secret key here.
+const SUPABASE_URL = "https://cqqrimemairiwubszzxc.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_A8Z7xzw9D2vePpOxXfgiFg_edLDrkzt";
+const supabaseConfigured = true;
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const $ = (id) => document.getElementById(id);
 
