@@ -3,34 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BC Courts public record lookup" />
-  <title>BC Courts Record Lookup</title>
+  <meta name="description" content="BC Courts public record lookup portal" />
+  <title>BC Courts | Public Records</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-inner">
-      <div>
-        <div class="eyebrow">BC COURTS</div>
-        <h1>Record Lookup</h1>
+    <div class="top-strip"></div>
+    <div class="container">
+      <div class="brand-row">
+        <a class="brand" href="#" aria-label="BC Courts home">
+          <div class="court-seal" aria-hidden="true">
+            <span>BC</span>
+            <small>COURTS</small>
+          </div>
+          <div class="brand-copy">
+            <span class="brand-kicker">PUBLIC RECORDS PORTAL</span>
+            <strong>BC Courts</strong>
+            <span>Access to public court records</span>
+          </div>
+        </a>
+        <div class="header-meta">
+          <span>Official Public Records</span>
+          <span class="header-divider"></span>
+          <span>Online Services</span>
+        </div>
       </div>
-      <button id="adminLink" class="link-button">Staff Login</button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#search">Case Search</a>
+        <a href="#information">Court Information</a>
+        <a href="#help">Help &amp; Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section id="searchView" class="card hero-card">
-      <h2>Search a Record</h2>
-      <p class="muted">Enter the record number to view the available record information and attached details file.</p>
-      <form id="searchForm" class="search-form">
-        <input id="recordNumber" name="recordNumber" autocomplete="off" placeholder="Record number" required />
-        <button type="submit">Search</button>
-      </form>
-      <div id="searchMessage" class="message" hidden></div>
-      <div id="recordResult" hidden></div>
+  <main>
+    <section class="hero" id="search">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="section-kicker">PUBLIC ACCESS</span>
+          <h1>Search Court Records</h1>
+          <p>Search for a public record using the record number. View available case information and documents associated with the record.</p>
+        </div>
+
+        <div class="search-panel">
+          <div class="search-panel-title">
+            <div class="search-icon" aria-hidden="true">⌕</div>
+            <div>
+              <strong>Record Number Search</strong>
+              <span>Enter the complete record number below.</span>
+            </div>
+          </div>
+          <form id="searchForm" class="search-form">
+            <label class="sr-only" for="recordNumber">Record number</label>
+            <input id="recordNumber" name="recordNumber" autocomplete="off" placeholder="Enter record number" required />
+            <button type="submit">Search Records</button>
+          </form>
+          <p class="search-note">Example: E5528829</p>
+        </div>
+        <div id="searchMessage" class="message" hidden></div>
+        <div id="recordResult" hidden></div>
+      </div>
     </section>
 
-    <section id="adminView" class="card" hidden>
+    <section class="information-section" id="information">
+      <div class="container information-grid">
+        <div class="info-card">
+          <span class="info-number">01</span>
+          <h2>Search a Record</h2>
+          <p>Enter a record number above to locate publicly available court record information.</p>
+        </div>
+        <div class="info-card">
+          <span class="info-number">02</span>
+          <h2>Review Details</h2>
+          <p>Review the record information returned by the public records system.</p>
+        </div>
+        <div class="info-card">
+          <span class="info-number">03</span>
+          <h2>View Documents</h2>
+          <p>When a document is available, use the document link to open the attached file.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="adminView" class="staff-section card" hidden>
       <div class="admin-heading">
         <div>
           <div class="eyebrow">STAFF AREA</div>
@@ -65,7 +121,30 @@
     </section>
   </main>
 
-  <footer class="site-footer"><div class="container">BC Courts Record Lookup</div></footer>
+  <footer class="site-footer" id="help">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <div class="mini-seal" aria-hidden="true">BC</div>
+        <div>
+          <strong>BC Courts</strong>
+          <p>Public Records Portal</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#search">Case Search</a>
+        <a href="#information">Court Information</a>
+        <a href="#help">Help &amp; Contact</a>
+      </div>
+      <button id="adminLink" class="staff-login" type="button" aria-label="Staff login" title="Staff login">
+        <span aria-hidden="true">♙</span>
+        <span>Staff</span>
+      </button>
+    </div>
+    <div class="container footer-bottom">
+      <span>BC Courts Public Records Portal</span>
+      <span>Information available through this public portal is subject to applicable court rules and records policies.</span>
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
