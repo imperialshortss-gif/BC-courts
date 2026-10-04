@@ -67,11 +67,20 @@ async function refreshAuth() {
   $("logoutButton").hidden = !signedIn;
 }
 
+function staffIdentity(username) {
+  // Supabase Auth requires an email/phone identity internally. Staff only enters a username;
+  // this private synthetic identity is generated automatically and is never shown in the UI.
+  const normalized = username.trim().toLowerCase();
+  return `${normalized}@bc-courts.local`;
+}
+
 async function login(event) {
   event.preventDefault();
   clearMessage("loginMessage");
   if (!supabaseClient) return showMessage("loginMessage", "Connect Supabase before signing in.", true);
-  const { error } = await supabaseClient.auth.signInWithPassword({ email: $("email").value, password: $("password").value });
+  const username = $("username").value.trim();
+  if (!username) return showMessage("loginMessage", "Username is required.", true);
+  const { error } = await supabaseClient.auth.signInWithPassword({ email: staffIdentity(username), password: $("password").value });
   if (error) return showMessage("loginMessage", error.message, true);
   await refreshAuth();
 }
