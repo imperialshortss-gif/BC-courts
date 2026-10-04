@@ -50,7 +50,10 @@ async function searchRecord(event) {
       <dl>
         <div><dt>Record number</dt><dd>${escapeHtml(data.record_number)}</dd></div>
         <div><dt>Name / title</dt><dd>${escapeHtml(data.name || "—")}</dd></div>
-        <div><dt>Status</dt><dd>${escapeHtml(data.status || "—")}</dd></div>
+        <div><dt>Court</dt><dd>${escapeHtml(data.court_name || "—")}</dd></div>
+        <div><dt>City / Province</dt><dd>${escapeHtml(data.city_province || "—")}</dd></div>
+        <div><dt>Judge</dt><dd>${escapeHtml(data.judge_name || "—")}</dd></div>
+        <div><dt>Status</dt><dd>${escapeHtml(data.status || "—")}</div>
         <div><dt>Date</dt><dd>${formatDate(data.record_date)}</dd></div>
       </dl>
       ${data.description ? `<div class="description"><strong>Details</strong><p>${escapeHtml(data.description).replace(/\\n/g, "<br>")}</p></div>` : ""}
