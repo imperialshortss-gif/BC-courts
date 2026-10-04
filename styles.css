@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+:root { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #172033; background: #f4f6f9; }
+body { margin: 0; min-height: 100vh; }
+.container { width: min(900px, calc(100% - 32px)); margin: 0 auto; }
+.site-header { background: #102a43; color: white; padding: 28px 0; }
+.header-inner, .admin-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.eyebrow { font-size: 12px; letter-spacing: .16em; font-weight: 700; opacity: .75; }
+h1, h2 { margin: 5px 0 0; }
+h1 { font-size: 28px; }
+h2 { font-size: 23px; }
+main { padding: 45px 0 70px; }
+.card { background: white; border: 1px solid #dfe5ec; border-radius: 14px; padding: 28px; margin-bottom: 24px; box-shadow: 0 8px 30px rgba(16,42,67,.06); }
+.hero-card { max-width: 760px; margin-left: auto; margin-right: auto; }
+.muted { color: #64748b; line-height: 1.6; }
+.search-form { display: flex; gap: 10px; margin-top: 24px; }
+input, textarea { width: 100%; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 13px; font: inherit; background: white; }
+input:focus, textarea:focus { outline: 2px solid #8bb8e8; border-color: #3874b7; }
+button { border: 0; border-radius: 8px; padding: 12px 18px; font: inherit; font-weight: 700; cursor: pointer; background: #1769aa; color: white; }
+button:hover { filter: brightness(.95); }
+button.secondary, .link-button { background: #e8eef5; color: #17324d; }
+.link-button { padding: 9px 13px; }
+.stack { display: grid; gap: 16px; margin-top: 20px; }
+label { display: grid; gap: 7px; font-weight: 600; }
+.message { margin-top: 18px; border-radius: 8px; padding: 12px 14px; }
+.message.error { background: #fff0f0; color: #a32929; }
+.message.success { background: #edf9f0; color: #1e6b35; }
+.result-card { margin-top: 25px; border-top: 4px solid #1769aa; background: #f8fafc; border-radius: 10px; padding: 22px; }
+.result-title { font-size: 20px; font-weight: 800; margin-bottom: 14px; }
+dl { margin: 0; }
+dl > div { display: grid; grid-template-columns: 180px 1fr; gap: 15px; padding: 11px 0; border-bottom: 1px solid #e2e8f0; }
+dt { font-weight: 700; color: #475569; }
+dd { margin: 0; }
+.description, .attachment { margin-top: 20px; padding-top: 18px; border-top: 1px solid #e2e8f0; }
+.file-link { display: inline-block; margin-top: 10px; font-weight: 700; color: #1769aa; }
+.site-footer { padding: 24px 0; border-top: 1px solid #dfe5ec; color: #64748b; font-size: 14px; }
+@media (max-width: 600px) { .search-form { flex-direction: column; } dl > div { grid-template-columns: 1fr; gap: 4px; } .header-inner { align-items: flex-start; } .card { padding: 20px; } }
