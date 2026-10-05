@@ -128,7 +128,7 @@ async function loadExisting(number) {
 
   const { data, error } = await supabaseClient
     .from("records")
-    .select("id,record_number,name,status,record_date,description,file_name")
+    .select("id,record_number,name,court_name,city_province,judge_name,status,record_date,description,file_name")
     .eq("record_number", number)
     .maybeSingle();
 
