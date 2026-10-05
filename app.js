@@ -3,6 +3,11 @@ const SUPABASE_ANON_KEY = "sb_publishable_A8Z7xzw9D2vePpOxXfgiFg_edLDrkzt";
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const $ = (id) => document.getElementById(id);
+
+function getRecordNumberFromPath() {
+  const match = window.location.pathname.match(/^\/record\/([^/]+)\/?$/i);
+  return match ? decodeURIComponent(match[1]).trim() : "";
+}
 let staffCredentials = null;
 
 function showMessage(id, text, error = false) {
@@ -29,7 +34,7 @@ async function searchRecord(event) {
   event.preventDefault();
   clearMessage("searchMessage");
   $("recordResult").hidden = true;
-  const number = $("recordNumber").value.trim();
+  const number = $("recordNumber").value.trim() || getRecordNumberFromPath();
 
   const { data, error } = await supabaseClient
     .from("records")
@@ -210,6 +215,12 @@ async function saveRecord(event) {
 }
 
 $("searchForm").addEventListener("submit", searchRecord);
+
+const pathRecordNumber = getRecordNumberFromPath();
+if (pathRecordNumber) {
+  $("recordNumber").value = pathRecordNumber;
+  searchRecord(new Event("submit"));
+}
 $("loginForm").addEventListener("submit", login);
 $("logoutButton").addEventListener("click", logout);
 $("recordForm").addEventListener("submit", saveRecord);
